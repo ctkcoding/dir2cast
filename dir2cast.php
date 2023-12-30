@@ -1246,7 +1246,13 @@ class Dir_Podcast extends Podcast
             if(self::$EMPTY_PODCAST_IS_ERROR && 0 == $item_count)
             {
                 http_response_code(404);
-                throw new Exception("No content yet.");
+                if (0 == $item_count) {
+                    throw new Exception("Item count zero.");
+                }
+                if (self::$EMPTY_PODCAST_IS_ERROR) {
+                    throw new Exception("Self empty podcast error.");
+                }
+                
             }
 
             $this->calculateItemHash();
