@@ -7,7 +7,7 @@ RUN mkdir -p /var/www/html/episodes
 # initialize env vars with defaults
 # these can be changed with -e at docker run
 ARG MP3_DIR=/var/www/html/episodes \
-    MP3_URL={MP3_URL} \
+    MP3_URL=${MP3_URL} \
     RECURSIVE_DIRECTORY_ITERATOR=true \
     COPYRIGHT= \
     WEBMASTER= \
