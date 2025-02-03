@@ -2,7 +2,7 @@
 
 rm "/var/www/html/dir2cast.ini"
 
-echo MP3_URL = ${MP3_URL}
+echo MP3_URL = $MP3_URL
 
 echo MP3_DIR = $MP3_DIR \ >> /var/www/html/dir2cast.ini
 echo MP3_URL= ${MP3_URL} \  >> /var/www/html/dir2cast.ini
