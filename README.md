@@ -108,18 +108,10 @@ not covered in this guide.
 
 Local setup
 -----------
-1. Map the container's port 80 to whatever port you want to access it with on your
-   local network (e.g. port 8080)
-2. Episodes will be scanned for at `/var/www/html/episodes` unless you pass in a
-   different MP3_DIR, so make sure to create a volume to map under `/var/www/html`,
-   or directly bind the episodes folder to a location on your file system where you wish to store episodes
-4. To start the container, try something like: 
-   `docker run --name dir2cast -d -p 8080:80 -v podcast_volume:/var/www/html/episodes ctkcoding/dir2cast:latest` and add env vars to represent settings in dir2cast.ini that
-   you'd like to change from the default. Dockerfile contains a list of supported ENV
-   options and defaults that will be used to create a new dir2cast.ini at container run
-   time
-5. Once you add media files to the location you chose after step 2, your podcast
-   feed should now exist at `<docker server ip>:<container port>/rss`
+1. Review the existing docker-compose file as a baseline to start locally.
+2. Episodes are expected at `/var/www/html/episodes` unless you pass in a different MP3_DIR, so make sure to create a volume to map under `/var/www/html`, or directly bind the episodes folder to a location on your file system where you wish to store episodes.
+3. For any other changes - review the compose file and set ENV vars as you'd like. Dockerfile contains a list of supported options and defaults that will be used to create a new dir2cast.ini at container startup.
+4. Once you add media files to the location you chose after step 2, your podcast feed should now exist at `<docker ip>:<port>/rss`
 
 Remote using SWAG
 -----------------
@@ -132,7 +124,7 @@ Remote using SWAG
    restart both containers
 4. Check that podcast episodes can be played/downloaded. If your feed exists and can be
    subscribed to, but files aren't available, try setting `MP3_URL` env var  with
-   https:// rather than http://. (see comment in ini file)
+   https:// (see comment in source ini file)
 
 Notes
 -----
@@ -140,9 +132,9 @@ Notes
   (rather than a docker volume) is an easy way to enable a simple workflow for you to
   drag and drop content into the podcast feed.
 * If you see '.\_' prefixed junk files in your feed, that is an unfortunate side-effect
-  of using network shares from macOS, and not dir2cast's fault.
+  of using network shares from macOS, and not dir2cast's fault. Use the macOS native dot_clean command to remove these
 * 502 errors are likely SWAG configuration problems. Check container name, port mapping, etc.
-* currently the only docker env vars that can be fed in at startup and set in dir2cast.ini are ITEM_COUNT, MP3_DIR, TITLE, AUTO_SAVE_COVER_ART. Copy the RUN commands in Dockerfile for any new env vars needed
+* all dir2cast.ini variables should be supported as docker env vars - if you find this is not correct, look at the RUN commands in Dockerfile for any new env vars needed
 
 Thank you to @ctkcoding for the contribution of this guide.
 
