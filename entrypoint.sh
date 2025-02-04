@@ -3,6 +3,7 @@
 # rm "/var/www/html/dir2cast.ini"
 
 echo ${MP3_URL}
+echo $MP3_URL
 echo "MP3_URL brackets dollars = ${MP3_URL}"
 echo "MP3_URL no, brackets only dollars = $MP3_URL"
 
