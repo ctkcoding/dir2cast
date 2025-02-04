@@ -39,7 +39,7 @@ COPY ./dir2cast.php /var/www/html/
 COPY ./getID3/ /var/www/html/getID3/
 COPY entrypoint.sh /usr/local/bin/
 RUN a2enmod rewrite
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT "/usr/local/bin/entrypoint.sh"
 
 EXPOSE 80
 CMD ["apache2-foreground"]
