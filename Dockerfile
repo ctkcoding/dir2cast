@@ -37,7 +37,7 @@ ENV MP3_DIR=/var/www/html/episodes \
 # copy source files to docker 
 COPY ./.htaccess/ /var/www/html/
 COPY ./dir2cast.php /var/www/html/
-COPY ./dir2cast.ini /var/www/html/
+COPY ./dir2cast.ini.sample /var/www/html/dir2cast.ini
 COPY ./getID3/ /var/www/html/getID3/
 # COPY entrypoint.sh /usr/local/bin/
 RUN a2enmod rewrite
